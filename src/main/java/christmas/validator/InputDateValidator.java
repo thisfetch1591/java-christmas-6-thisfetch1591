@@ -1,25 +1,16 @@
 package christmas.validator;
 
+import static christmas.constants.ErrorType.DATE_RANGE_IS_NOT_VALIDATE;
+
 public class InputDateValidator {
 
-    public static int validateDate(String input) {
-        int date = convertStringToInt(input);
-        validateRange(date);
+    private final static int MIN_DATE = 1;
+    private final static int MAX_DATE = 31;
+
+    public static int validateRange(int date) {
+        if (date < MIN_DATE || date > MAX_DATE) {
+            throw new IllegalArgumentException(DATE_RANGE_IS_NOT_VALIDATE.getErrorMessage());
+        }
         return date;
-    }
-
-    private static int convertStringToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void validateRange(int date) {
-        if (date < 1 || date > 31) {
-            throw new IllegalArgumentException();
-        }
-
     }
 }
