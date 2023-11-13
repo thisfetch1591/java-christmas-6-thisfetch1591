@@ -15,4 +15,5 @@ public class OrderItem {
     public static OrderItem itemQuantityOf(Menu item, int quantity) {
         return new OrderItem(item, quantity);
     }
+
 }

@@ -25,15 +25,15 @@ public enum Menu {
         this.codeOfMenu = codeOfMenu;
     }
 
-    public int addPrice(int totalPrice) {
-        return totalPrice += costOfMenu;
-    }
-
     public static Menu find(String menuName) {
         return Arrays.stream(values())
                 .filter(menu -> menu.nameOfMenu.equals(menuName))
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public int addPrice(int totalPrice) {
+        return totalPrice += costOfMenu;
     }
 
     public boolean isDrink() {
