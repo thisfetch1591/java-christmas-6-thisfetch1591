@@ -1,4 +1,4 @@
-package constants;
+package christmas.constants;
 
 public enum Menu {
     MUSHROOM_CREAM_SOUP("양송이수프", 6000, 1),
