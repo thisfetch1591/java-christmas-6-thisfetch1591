@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -21,7 +20,7 @@ class InputDateValidatorTest {
     @DisplayName("올바른 값을 입력 시 정상 작동")
     @ValueSource(ints = {1, 31})
     @ParameterizedTest
-    void createExceptionForNotIntegerTypeDate(int input) {
+    void normalOperationInputCorrectValue(int input) {
         int validatedValue = InputDateValidator.validateRange(input);
         assertEquals(input, validatedValue);
     }
