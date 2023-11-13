@@ -19,8 +19,8 @@ public class StringParser {
     public static int parseDateInput(String input) {
         input = removeWhiteSpace(input);
         int date = convertStringToInt(input);
-        validateRange(date);
-        return date;
+        int validatedDate = validateRange(date);
+        return validatedDate;
     }
 
     private static int convertStringToInt(String input) {

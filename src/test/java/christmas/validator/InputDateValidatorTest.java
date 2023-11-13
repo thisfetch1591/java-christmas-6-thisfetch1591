@@ -10,26 +10,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputDateValidatorTest {
 
-    @DisplayName("Integer로 변환하지 못할 시 에러처리")
-    @ValueSource(strings = {"삼십일일"})
-    @ParameterizedTest
-    void createExceptionForNotInteger(String input) {
-        assertThatThrownBy(() -> InputDateValidator.validateDate(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("1~31에 해당하지 않은 숫자를 입력 시 예외처리")
-    @ValueSource(strings = {"32", "0", "-25"})
+    @ValueSource(ints = {32, 0, -25})
     @ParameterizedTest
-    void createExceptionForNotExistOverDate(String input) {
-        assertThatThrownBy(() -> InputDateValidator.validateDate(input))
+    void createExceptionForNotExistOverUnderDate(int input) {
+        assertThatThrownBy(() -> InputDateValidator.validateRange(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("제대로 된 숫자를 입력 시 함수의 정상 작동")
-    @Test
-    void create() {
-        String input = "10";
-        assertEquals(10, InputDateValidator.validateDate(input));
+    @DisplayName("올바른 값을 입력 시 정상 작동")
+    @ValueSource(ints = {1, 31})
+    @ParameterizedTest
+    void createExceptionForNotIntegerTypeDate(int input) {
+        int validatedValue = InputDateValidator.validateRange(input);
+        assertEquals(input, validatedValue);
     }
 }
