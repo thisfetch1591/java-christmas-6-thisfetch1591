@@ -1,7 +1,6 @@
 package christmas.view;
 
-import static christmas.utils.StringParser.parseDateInput;
-import static christmas.utils.StringParser.parseOrderInput;
+import static christmas.utils.StringParser.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.OrderItem;

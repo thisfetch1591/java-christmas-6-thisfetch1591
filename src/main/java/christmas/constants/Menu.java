@@ -1,6 +1,9 @@
 package christmas.constants;
 
+import static christmas.constants.ErrorType.CAN_NOT_FOUND_MENU;
+
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public enum Menu {
     MUSHROOM_CREAM_SOUP("양송이수프", 6000, 1),
@@ -29,7 +32,7 @@ public enum Menu {
         return Arrays.stream(values())
                 .filter(menu -> menu.nameOfMenu.equals(menuName))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoSuchElementException(CAN_NOT_FOUND_MENU.getErrorMessage()));
     }
 
     public int addPrice(int totalPrice) {
