@@ -36,7 +36,7 @@ class OrderItemsResultTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("음료만 입력 시 예외 처리")
+    @DisplayName("일정 수량 초과 입력시 예외처리")
     @Test
     void createExceptionForOrderedOverQuantity() {
         List<OrderItem> orderItems = List.of(
