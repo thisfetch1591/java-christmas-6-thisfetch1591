@@ -3,9 +3,11 @@ package christmas.utils;
 import static christmas.constants.ErrorType.CAN_NOT_CONVERT_INTEGER;
 import static christmas.validator.InputDateValidator.validateRange;
 import static christmas.validator.InputOrderValidator.validateExistMenuName;
+import static christmas.validator.InputOrderValidator.validateRangeQuantity;
 
 import christmas.constants.Menu;
 import christmas.domain.OrderItem;
+import christmas.domain.OrderItemsResult;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,10 +19,12 @@ public class StringParser {
     private final static int MENU_NAME_INDEX = 0;
     private final static int QUANTITY_INDEX = 1;
 
-    public static List<OrderItem> parseOrderInput(String input) {
+    public static OrderItemsResult parseOrderInput(String input) {
         input = removeWhiteSpace(input);
         List<String> items = parseInput(input);
-        return addItemsToOrder(items);
+        List<OrderItem> orderItems = addItemsToOrder(items);
+
+        return OrderItemsResult.of(orderItems);
     }
 
     public static int parseDateInput(String input) {
@@ -52,7 +56,9 @@ public class StringParser {
             String[] split = item.split(SPLIT_ORDER_DELIMITER);
             Menu menu = validateExistMenuName(split[MENU_NAME_INDEX]);
             int quantity = convertStringToInt(split[QUANTITY_INDEX]);
+            validateRangeQuantity(quantity);
             return OrderItem.itemQuantityOf(menu, quantity);
         }).toList();
     }
+
 }

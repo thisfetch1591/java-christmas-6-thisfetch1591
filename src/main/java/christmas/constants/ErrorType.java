@@ -6,7 +6,8 @@ public enum ErrorType {
 
     DATE_RANGE_IS_NOT_VALIDATE("[ERROR] 1 ~ 31까지의 날짜만 입력할 수 있습니다"),
 
-    CAN_NOT_FOUND_MENU("[ERROR] 입력하신 메뉴를 찾을 수 없습니다");
+    CAN_NOT_FOUND_MENU("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    CAN_NOT_ORDER_NUMBER("[ERROR] 유효하지 않은 주문입니다. 다시 입력해주세요.");
 
 
 

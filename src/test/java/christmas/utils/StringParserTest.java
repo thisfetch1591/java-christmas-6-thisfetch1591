@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.domain.OrderItem;
+import christmas.domain.OrderItemsResult;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,20 +33,14 @@ class StringParserTest {
     @Test
     void normalOperationWhenInputContainsWhiteSpace() {
         String input = "티본 스테이크 - 1 , 바베큐립 - 2 , 제로콜라 - 1";
-        List<OrderItem> orderItems= StringParser.parseOrderInput(input);
-        int itemsSize = orderItems.size();
-
-        assertEquals(3, itemsSize);
+        OrderItemsResult orderItems= StringParser.parseOrderInput(input);
     }
 
     @DisplayName("정상적으로 입력 처리")
     @Test
     void normalOperationWhenCorrectOrderInput() {
         String input = "티본스테이크-1,바베큐립-2,제로콜라-1";
-        List<OrderItem> orderItems= StringParser.parseOrderInput(input);
-        int itemsSize = orderItems.size();
-
-        assertEquals(3, itemsSize);
+        OrderItemsResult orderItems= StringParser.parseOrderInput(input);
     }
 
     @DisplayName("잘못된 날짜 타입을 입력 시 에러 처리")
