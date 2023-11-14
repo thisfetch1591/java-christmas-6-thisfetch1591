@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.constants.Menu;
 import java.util.List;
@@ -58,5 +59,19 @@ class OrderItemsResultTest {
         );
 
         OrderItemsResult orderItemsResult = OrderItemsResult.of(orderItems);
+    }
+
+    @DisplayName("정상적으로 할인 전 총주문 금액 수행")
+    @Test
+    void normalOperationGetTotalPrices() {
+        List<OrderItem> orderItems = List.of(
+                OrderItem.itemQuantityOf(Menu.RED_WINE, 5),
+                OrderItem.itemQuantityOf(Menu.CAESAR_SALAD, 9),
+                OrderItem.itemQuantityOf(Menu.ZERO_COKE, 2)
+        );
+
+        OrderItemsResult orderItemsResult = OrderItemsResult.of(orderItems);
+
+        assertEquals(378000, orderItemsResult.getTotalPrices());
     }
 }

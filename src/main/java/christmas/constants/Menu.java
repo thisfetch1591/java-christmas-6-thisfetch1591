@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum Menu {
+    NOT_EXIST_MENU("없음", 0, 0),
     MUSHROOM_CREAM_SOUP("양송이수프", 6000, 1),
     TAPAS("타파스", 5500, 1),
     CAESAR_SALAD("시저샐러드", 8000, 1),
