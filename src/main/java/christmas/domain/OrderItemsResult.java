@@ -16,6 +16,14 @@ public class OrderItemsResult {
         return new OrderItemsResult(orderItems);
     }
 
+    public int getTotalPrices() {
+        int totalPrices = 0;
+        for (OrderItem item : orderItems) {
+            totalPrices = item.addPrices(totalPrices);
+        }
+        return totalPrices;
+    }
+
     private void validateDuplicatedItem() {
         List<OrderItem> distinctOrderItems = orderItems.stream()
                 .distinct()

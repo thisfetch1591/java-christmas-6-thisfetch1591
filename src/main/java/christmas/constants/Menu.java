@@ -35,8 +35,8 @@ public enum Menu {
                 .orElseThrow(() -> new NoSuchElementException(CAN_NOT_FOUND_MENU.getErrorMessage()));
     }
 
-    public int addPrice(int totalPrice) {
-        return totalPrice += costOfMenu;
+    public int getCostOfMenu() {
+        return costOfMenu;
     }
 
     public boolean isDrink() {

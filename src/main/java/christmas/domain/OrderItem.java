@@ -28,6 +28,10 @@ public class OrderItem {
         return quantity + this.quantity;
     }
 
+    public int addPrices(int prices) {
+        return prices + item.getCostOfMenu() * quantity;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
