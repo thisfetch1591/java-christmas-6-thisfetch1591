@@ -3,9 +3,7 @@ package christmas.view;
 import static christmas.utils.StringParser.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.domain.OrderItem;
 import christmas.domain.OrderItemsResult;
-import java.util.List;
 
 public class InputView {
     public static int readDate() {

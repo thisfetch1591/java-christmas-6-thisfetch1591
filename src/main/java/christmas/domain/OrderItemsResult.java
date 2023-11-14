@@ -6,10 +6,10 @@ public class OrderItemsResult {
     private final List<OrderItem> orderItems;
 
     private OrderItemsResult(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
         validateDuplicatedItem();
         validateOrderOnlyBeverage();
         validateMaxQuantityOrder();
-        this.orderItems = orderItems;
     }
 
     public static OrderItemsResult of(List<OrderItem> orderItems) {
