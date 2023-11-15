@@ -1,8 +1,12 @@
 package christmas.service;
 
+import christmas.constants.DiscountType;
+import christmas.domain.DiscountItem;
+import christmas.domain.DiscountItemsResult;
 import christmas.domain.OrderItemsResult;
 import christmas.utils.SpecialDayIdentifier;
 import christmas.utils.WeekdayWeekendIdentifier;
+import java.util.List;
 
 public class DiscountService {
     private final int date;
@@ -18,28 +22,45 @@ public class DiscountService {
         return new DiscountService(orderItemsResult, date);
     }
 
-    public int discountXmas() {
-        if (date < 26) {
-            return 1000 + (date * 100);
-        }
-        return 0;
+    public DiscountItemsResult execute() {
+        List<DiscountItem> discountItems = List.of(
+                discountXmas(),
+                disCountWeek(),
+                discountSpecial()
+        );
+        return DiscountItemsResult.discountItemsOf(discountItems);
     }
 
-    public int disCountWeek() {
+    public DiscountItem discountXmas() {
+        if (date < 26) {
+            DiscountType type = DiscountType.XMAS_D_DAY_DISCOUNT;
+            int salesPrice = 1000 + (date * 100);
+            return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
+        }
+        return DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);
+    }
+
+    public DiscountItem disCountWeek() {
         WeekdayWeekendIdentifier identifier = WeekdayWeekendIdentifier.of(date);
         boolean isWeekend = identifier.isWeekend();
         if (isWeekend) {
-            return orderItemsResult.getMainMenuDiscountPrice();
+            DiscountType type = DiscountType.WEEKEND_DISCOUNT;
+            int salesPrice = orderItemsResult.getMainMenuDiscountPrice();
+            return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
         }
-        return orderItemsResult.getDessertDiscountPrice();
+        DiscountType type = DiscountType.WEEKDAY_DISCOUNT;
+        int salesPrice = orderItemsResult.getDessertDiscountPrice();
+        return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
     }
 
-    public int discountSpecial() {
+    public DiscountItem discountSpecial() {
         SpecialDayIdentifier identifier = SpecialDayIdentifier.of(date);
         boolean isSpecial = identifier.isSpecialDay();
         if (isSpecial) {
-            return 1000;
+            DiscountType type = DiscountType.SPECIAL_DISCOUNT;
+            int salesPrice = 1000;
+            return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
         }
-        return 0;
+        return DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);
     }
 }

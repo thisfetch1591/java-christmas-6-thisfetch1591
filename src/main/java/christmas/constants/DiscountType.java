@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum DiscountType {
+    NO_DISCOUNT("할인 해당 없음", 0),
     XMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인", 1),
     WEEKDAY_DISCOUNT("평일 할인", 2),
     WEEKEND_DISCOUNT("주말 할인", 3),
