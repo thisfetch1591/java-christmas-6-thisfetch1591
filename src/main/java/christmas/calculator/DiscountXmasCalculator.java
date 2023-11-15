@@ -9,6 +9,8 @@ public class DiscountXmasCalculator {
     private final static int START_DISCOUNT_PRICE = 1000;
     private final static int INCREASE_DISCOUNT_PRICE = 100;
 
+    private final static int MIN_TOTAL_PRICE = 10000;
+
     private final int date;
 
     private DiscountXmasCalculator(int date) {
@@ -19,8 +21,8 @@ public class DiscountXmasCalculator {
         return new DiscountXmasCalculator(date);
     }
 
-    public DiscountItem execute() {
-        if (date < CHRISTMAS_END_DATE) {
+    public DiscountItem execute(int totalPrice) {
+        if (date < CHRISTMAS_END_DATE && totalPrice >= MIN_TOTAL_PRICE) {
             DiscountType type = DiscountType.XMAS_D_DAY_DISCOUNT;
             int salesPrice = (START_DISCOUNT_PRICE + ((date - 1) * INCREASE_DISCOUNT_PRICE));
             return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);

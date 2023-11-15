@@ -10,7 +10,7 @@ public class InputOrderValidator {
     public static Menu validateExistMenuName(String name) {
         try {
             return Menu.find(name);
-        } catch (Exception ex) {
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException(ex.getMessage());
         }
     }
