@@ -6,11 +6,12 @@ import christmas.domain.OrderItemsResult;
 import christmas.utils.DiscountSpecialCalculator;
 import christmas.utils.DiscountWeekCalculator;
 import christmas.utils.DiscountXmasCalculator;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountService {
 
-    private final static int GIFT_MIN_PRICE = 120000;
+    private final static int MIN_TOTAL_PRICE_FOR_FREE_GIFT = 120000;
     private final int date;
 
     private final OrderItemsResult orderItemsResult;
@@ -28,13 +29,13 @@ public class DiscountService {
         DiscountXmasCalculator discountXmasCalculator = DiscountXmasCalculator.of(date);
         DiscountSpecialCalculator discountSpecialCalculator = DiscountSpecialCalculator.of(date);
         DiscountWeekCalculator discountWeekCalculator = DiscountWeekCalculator.of(date);
-        List<DiscountItem> discountItems = List.of(
+        List<DiscountItem> discountItems = new ArrayList<>(List.of(
                 discountXmasCalculator.execute(),
                 discountWeekCalculator.execute(orderItemsResult),
-                discountSpecialCalculator.execute()
+                discountSpecialCalculator.execute())
         );
         DiscountItemsResult results = DiscountItemsResult.discountItemsOf(discountItems);
-        if (orderItemsResult.getTotalPrices() == GIFT_MIN_PRICE) {
+        if (orderItemsResult.getTotalPrices() >= MIN_TOTAL_PRICE_FOR_FREE_GIFT) {
             FreeGiftService.addDiscountItem(results);
         }
         return results;

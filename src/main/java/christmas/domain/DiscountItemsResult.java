@@ -16,6 +16,7 @@ public class DiscountItemsResult {
     public void addDiscountItem(DiscountItem discountItem) {
         discountItems.add(discountItem);
     }
+
     public int getTotalDiscountPrice() {
         int totalPrice = 0;
         for (DiscountItem item : discountItems) {
@@ -27,7 +28,9 @@ public class DiscountItemsResult {
     public String getDiscountItemsResultSentence() {
         StringBuilder sentence = new StringBuilder();
         for (DiscountItem item : discountItems) {
-            sentence.append(item.getDiscountItemSentence());
+            if (item.getDiscountItemSentence().contains("할인 해당 없음") == false) {
+                sentence.append(item.getDiscountItemSentence());
+            }
         }
         return sentence.toString();
     }
