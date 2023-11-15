@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constants.ErrorType.CAN_NOT_FOUND_MENU;
+
 import java.util.List;
 
 public class OrderItemsResult {
@@ -22,6 +24,7 @@ public class OrderItemsResult {
         for (OrderItem item : orderItems) {
             totalPrices = item.addPrices(totalPrices);
         }
+
         return totalPrices;
     }
 
@@ -29,7 +32,7 @@ public class OrderItemsResult {
         int count = 0;
         for (OrderItem item : orderItems) {
             if (item.isDessert()) {
-                count++;
+                count += item.addQuantity(count);
             }
         }
         return DISCOUNT_PRICE * count;
@@ -39,7 +42,7 @@ public class OrderItemsResult {
         int count = 0;
         for (OrderItem item : orderItems) {
             if (item.isMainMenu()) {
-                count++;
+                count += item.addQuantity(count);
             }
         }
         return DISCOUNT_PRICE * count;
@@ -59,7 +62,7 @@ public class OrderItemsResult {
                 .toList();
 
         if (distinctOrderItems.size() != orderItems.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CAN_NOT_FOUND_MENU.getErrorMessage());
         }
     }
 
@@ -71,7 +74,7 @@ public class OrderItemsResult {
             }
         }
         if (isOrderedFood == false) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CAN_NOT_FOUND_MENU.getErrorMessage());
         }
     }
 
@@ -81,7 +84,7 @@ public class OrderItemsResult {
             quantity = item.addQuantity(quantity);
         }
         if (quantity > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CAN_NOT_FOUND_MENU.getErrorMessage());
         }
     }
 }

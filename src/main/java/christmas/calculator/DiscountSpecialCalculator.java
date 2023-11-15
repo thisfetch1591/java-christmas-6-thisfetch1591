@@ -6,6 +6,8 @@ import christmas.utils.SpecialDayIdentifier;
 
 public class DiscountSpecialCalculator {
 
+    private final static int BASIC_DISCOUNT_PRICE = 1000;
+
     private final int date;
 
     private DiscountSpecialCalculator(int date) {
@@ -21,7 +23,7 @@ public class DiscountSpecialCalculator {
         boolean isSpecial = identifier.isSpecialDay();
         if (isSpecial) {
             DiscountType type = DiscountType.SPECIAL_DISCOUNT;
-            int salesPrice = 1000;
+            int salesPrice = BASIC_DISCOUNT_PRICE;
             return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
         }
         return DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);

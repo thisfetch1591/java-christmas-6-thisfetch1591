@@ -35,9 +35,12 @@ public class DiscountService {
                 discountSpecialCalculator.execute())
         );
         DiscountItemsResult results = DiscountItemsResult.discountItemsOf(discountItems);
-        if (orderItemsResult.getTotalPrices() >= MIN_TOTAL_PRICE_FOR_FREE_GIFT) {
-            FreeGiftService.addDiscountItem(results);
-        }
         return results;
+    }
+
+    public void addFreeGiftToItemResult(DiscountItemsResult results) {
+        if (orderItemsResult.getTotalPrices() >= MIN_TOTAL_PRICE_FOR_FREE_GIFT) {
+            FreeGiftService.addDiscountItem(orderItemsResult.getTotalPrices(), results);
+        }
     }
 }

@@ -4,6 +4,10 @@ import christmas.constants.DiscountType;
 import christmas.domain.DiscountItem;
 
 public class DiscountXmasCalculator {
+    private final static int CHRISTMAS_END_DATE = 26;
+
+    private final static int START_DISCOUNT_PRICE = 1000;
+    private final static int INCREASE_DISCOUNT_PRICE = 100;
 
     private final int date;
 
@@ -16,9 +20,9 @@ public class DiscountXmasCalculator {
     }
 
     public DiscountItem execute() {
-        if (date < 26) {
+        if (date < CHRISTMAS_END_DATE) {
             DiscountType type = DiscountType.XMAS_D_DAY_DISCOUNT;
-            int salesPrice = (1000 + ((date - 1) * 100));
+            int salesPrice = (START_DISCOUNT_PRICE + ((date - 1) * INCREASE_DISCOUNT_PRICE));
             return DiscountItem.discountTypeDiscountPriceOf(type, salesPrice);
         }
         return DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);

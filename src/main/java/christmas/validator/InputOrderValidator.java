@@ -16,7 +16,7 @@ public class InputOrderValidator {
     }
 
     public static void validateRangeQuantity(int quantity) {
-        if (quantity == QUANTITY_MIN_NUMBER) {
+        if (quantity < QUANTITY_MIN_NUMBER) {
             throw new IllegalArgumentException(CAN_NOT_ORDER_NUMBER.getErrorMessage());
         }
     }
