@@ -3,6 +3,7 @@ package christmas.domain;
 import java.util.List;
 
 public class OrderItemsResult {
+    private static final int DISCOUNT_PRICE = 2023;
     private final List<OrderItem> orderItems;
 
     private OrderItemsResult(List<OrderItem> orderItems) {
@@ -22,6 +23,26 @@ public class OrderItemsResult {
             totalPrices = item.addPrices(totalPrices);
         }
         return totalPrices;
+    }
+
+    public int getDessertDiscountPrice() {
+        int count = 0;
+        for (OrderItem item : orderItems) {
+            if (item.isDessert()) {
+                count++;
+            }
+        }
+        return DISCOUNT_PRICE * count;
+    }
+
+    public int getMainMenuDiscountPrice() {
+        int count = 0;
+        for (OrderItem item : orderItems) {
+            if (item.isMainMenu()) {
+                count++;
+            }
+        }
+        return DISCOUNT_PRICE * count;
     }
 
     private void validateDuplicatedItem() {

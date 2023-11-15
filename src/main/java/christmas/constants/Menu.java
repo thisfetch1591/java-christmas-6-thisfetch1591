@@ -40,17 +40,19 @@ public enum Menu {
         return costOfMenu;
     }
 
+    public boolean isMainMenu() {
+        return codeOfMenu == 2;
+    }
+
+    public boolean isDessert() {
+        return codeOfMenu == 3;
+    }
+
     public boolean isDrink() {
-        if (codeOfMenu == 4) {
-            return true;
-        }
-        return false;
+        return codeOfMenu == 4;
     }
 
     public boolean isSameName(String menuName) {
-        if (menuName.equals(nameOfMenu)) {
-            return true;
-        }
-        return false;
+        return menuName.equals(nameOfMenu);
     }
 }

@@ -18,10 +18,15 @@ public class OrderItem {
     }
 
     public boolean isDrink() {
-        if (item.isDrink()) {
-            return true;
-        }
-        return false;
+        return item.isDrink();
+    }
+
+    public boolean isDessert() {
+        return item.isDessert();
+    }
+
+    public boolean isMainMenu() {
+        return item.isMainMenu();
     }
 
     public int addQuantity(int quantity) {
