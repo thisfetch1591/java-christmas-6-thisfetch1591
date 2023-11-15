@@ -15,7 +15,7 @@ class DiscountXmasCalculatorTest {
     void normalOperationWhenInputNotEventDay() {
         int date = 30;
         DiscountXmasCalculator discountXmasCalculator = DiscountXmasCalculator.of(date);
-        DiscountItem discountItem = discountXmasCalculator.execute();
+        DiscountItem discountItem = discountXmasCalculator.execute(10000);
         DiscountItem expectDiscountItem = DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);
         boolean isNotDiscount = discountItem.equals(expectDiscountItem);
         assertTrue(isNotDiscount);
@@ -26,7 +26,7 @@ class DiscountXmasCalculatorTest {
     void normalOperationWhenInputEventDay() {
         int date = 25;
         DiscountXmasCalculator discountXmasCalculator = DiscountXmasCalculator.of(date);
-        DiscountItem discountItem = discountXmasCalculator.execute();
+        DiscountItem discountItem = discountXmasCalculator.execute(10000);
         DiscountItem expectDiscountItem = DiscountItem.discountTypeDiscountPriceOf(DiscountType.XMAS_D_DAY_DISCOUNT,
                 3400);
         boolean isDiscount = discountItem.equals(expectDiscountItem);

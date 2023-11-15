@@ -6,6 +6,8 @@ import christmas.domain.OrderItemsResult;
 import christmas.utils.WeekdayWeekendIdentifier;
 
 public class DiscountWeekCalculator {
+
+    private final static int MIN_TOTAL_PRICE = 10000;
     private final int date;
 
     private DiscountWeekCalculator(int date) {
@@ -17,6 +19,9 @@ public class DiscountWeekCalculator {
     }
 
     public DiscountItem execute(OrderItemsResult orderItemsResult) {
+        if(orderItemsResult.getTotalPrices() < MIN_TOTAL_PRICE) {
+            return DiscountItem.discountTypeDiscountPriceOf(DiscountType.NO_DISCOUNT, 0);
+        }
         WeekdayWeekendIdentifier identifier = WeekdayWeekendIdentifier.of(date);
         boolean isWeekend = identifier.isWeekend();
         if (isWeekend) {

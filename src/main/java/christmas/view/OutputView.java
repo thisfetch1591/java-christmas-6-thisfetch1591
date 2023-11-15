@@ -52,7 +52,7 @@ public class OutputView {
 
     public static void printDiscountPrice(String discountPrice) {
         System.out.println("<총혜택 금액>");
-        if (discountPrice == "0") {
+        if (discountPrice.equals("0")) {
             System.out.println("0원");
             return;
         }

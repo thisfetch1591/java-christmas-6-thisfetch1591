@@ -33,7 +33,7 @@ public enum Menu {
         return Arrays.stream(values())
                 .filter(menu -> menu.nameOfMenu.equals(menuName))
                 .findAny()
-                .orElseThrow(() -> new NoSuchElementException(CAN_NOT_FOUND_MENU.getErrorMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(CAN_NOT_FOUND_MENU.getErrorMessage()));
     }
 
     public int getCostOfMenu() {

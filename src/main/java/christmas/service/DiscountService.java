@@ -30,9 +30,9 @@ public class DiscountService {
         DiscountSpecialCalculator discountSpecialCalculator = DiscountSpecialCalculator.of(date);
         DiscountWeekCalculator discountWeekCalculator = DiscountWeekCalculator.of(date);
         List<DiscountItem> discountItems = new ArrayList<>(List.of(
-                discountXmasCalculator.execute(),
+                discountXmasCalculator.execute(orderItemsResult.getTotalPrices()),
                 discountWeekCalculator.execute(orderItemsResult),
-                discountSpecialCalculator.execute())
+                discountSpecialCalculator.execute(orderItemsResult.getTotalPrices()))
         );
         DiscountItemsResult results = DiscountItemsResult.discountItemsOf(discountItems);
         return results;
