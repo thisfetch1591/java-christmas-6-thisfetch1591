@@ -21,10 +21,7 @@ public enum DiscountType {
         this.discountCode = discountCode;
     }
 
-    public static DiscountType find(int discountCode) {
-        return Arrays.stream(values())
-                .filter(discountType -> discountType.discountCode == discountCode)
-                .findAny()
-                .orElseThrow(() -> new NoSuchElementException(CAN_NOT_FOUND_MENU.getErrorMessage()));
+    public String getDiscountContext() {
+        return discountContext;
     }
 }

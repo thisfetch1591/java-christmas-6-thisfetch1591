@@ -37,6 +37,10 @@ public class OrderItem {
         return prices + item.getCostOfMenu() * quantity;
     }
 
+    public String getOrderItemSentence() {
+        return item.getNameOfMenu() + " " + quantity + "개\n";
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

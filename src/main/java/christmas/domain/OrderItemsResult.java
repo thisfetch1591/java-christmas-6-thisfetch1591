@@ -45,6 +45,14 @@ public class OrderItemsResult {
         return DISCOUNT_PRICE * count;
     }
 
+    public String getOrderMenuResultSentence() {
+        StringBuilder sentence = new StringBuilder();
+        for (OrderItem item : orderItems) {
+            sentence.append(item.getOrderItemSentence());
+        }
+        return sentence.toString();
+    }
+
     private void validateDuplicatedItem() {
         List<OrderItem> distinctOrderItems = orderItems.stream()
                 .distinct()

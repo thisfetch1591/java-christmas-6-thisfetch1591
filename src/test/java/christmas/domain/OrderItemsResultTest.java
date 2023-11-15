@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -59,6 +60,9 @@ class OrderItemsResultTest {
         );
 
         OrderItemsResult orderItemsResult = OrderItemsResult.of(orderItems);
+        assertThat(orderItemsResult.getOrderMenuResultSentence()).contains(
+                "레드와인 5개\n시저샐러드 9개\n제로콜라 2개\n"
+        );
     }
 
     @DisplayName("정상적으로 할인 전 총주문 금액 수행")

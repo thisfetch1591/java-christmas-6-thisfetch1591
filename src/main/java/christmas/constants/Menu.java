@@ -40,6 +40,8 @@ public enum Menu {
         return costOfMenu;
     }
 
+    public String getNameOfMenu() { return nameOfMenu;}
+
     public boolean isMainMenu() {
         return codeOfMenu == 2;
     }

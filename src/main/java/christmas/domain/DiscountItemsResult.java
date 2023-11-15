@@ -13,6 +13,9 @@ public class DiscountItemsResult {
         return new DiscountItemsResult(discountItems);
     }
 
+    public void addDiscountItem(DiscountItem discountItem) {
+        discountItems.add(discountItem);
+    }
     public int getTotalDiscountPrice() {
         int totalPrice = 0;
         for (DiscountItem item : discountItems) {
@@ -21,4 +24,11 @@ public class DiscountItemsResult {
         return totalPrice;
     }
 
+    public String getDiscountItemsResultSentence() {
+        StringBuilder sentence = new StringBuilder();
+        for (DiscountItem item : discountItems) {
+            sentence.append(item.getDiscountItemSentence());
+        }
+        return sentence.toString();
+    }
 }

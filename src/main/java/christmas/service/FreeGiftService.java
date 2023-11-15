@@ -1,6 +1,9 @@
 package christmas.service;
 
+import christmas.constants.DiscountType;
 import christmas.constants.Menu;
+import christmas.domain.DiscountItem;
+import christmas.domain.DiscountItemsResult;
 import christmas.domain.OrderItem;
 
 public class FreeGiftService {
@@ -30,5 +33,11 @@ public class FreeGiftService {
             return OrderItem.itemQuantityOf(giftMenu, giftQuantity);
         }
         return OrderItem.itemQuantityOf(AVOID_GIFT_MENU, 1);
+    }
+
+    public static void addDiscountItem(DiscountItemsResult discountItemsResult) {
+        DiscountItem discountItem = DiscountItem.discountTypeDiscountPriceOf(DiscountType.FREE_GIFT_EVENT,
+                FREE_GIFT_MENU.getCostOfMenu());
+        discountItemsResult.addDiscountItem(discountItem);
     }
 }

@@ -3,6 +3,7 @@ package christmas.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.constants.Menu;
+import christmas.domain.DiscountItemsResult;
 import christmas.domain.OrderItem;
 import christmas.domain.OrderItemsResult;
 import java.util.List;
