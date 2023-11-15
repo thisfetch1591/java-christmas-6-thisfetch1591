@@ -40,7 +40,7 @@ public class DiscountService {
 
     public void addFreeGiftToItemResult(DiscountItemsResult results) {
         if (orderItemsResult.getTotalPrices() >= MIN_TOTAL_PRICE_FOR_FREE_GIFT) {
-            FreeGiftService.addDiscountItem(results);
+            FreeGiftService.addDiscountItem(orderItemsResult.getTotalPrices(), results);
         }
     }
 }

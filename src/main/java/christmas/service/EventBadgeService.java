@@ -1,6 +1,14 @@
 package christmas.service;
 
 public class EventBadgeService {
+
+    private final static String SANTA_BADGE = "산타";
+    private final static String TREE_BADGE = "트리";
+    private final static String STAR_BADGE = "별";
+    private final static String NO_BADGE = "없음";
+    private final static int SANTA_PRICE = 20000;
+    private final static int TREE_PRICE = 10000;
+    private final static int STAR_PRICE = 5000;
     private final int totalDiscountPrice;
 
     private EventBadgeService(int totalDiscountPrice) {
@@ -12,15 +20,15 @@ public class EventBadgeService {
     }
 
     public String execute() {
-        if (totalDiscountPrice >= 20000) {
-            return "산타";
+        if (totalDiscountPrice >= SANTA_PRICE) {
+            return SANTA_BADGE;
         }
-        if (totalDiscountPrice >= 10000) {
-            return "트리";
+        if (totalDiscountPrice >= TREE_PRICE) {
+            return TREE_BADGE;
         }
-        if (totalDiscountPrice >= 5000) {
-            return "별";
+        if (totalDiscountPrice >= STAR_PRICE) {
+            return STAR_BADGE;
         }
-        return "없음";
+        return NO_BADGE;
     }
 }

@@ -1,6 +1,7 @@
 package christmas.utils;
 
-import static christmas.constants.ErrorType.CAN_NOT_CONVERT_INTEGER;
+import static christmas.constants.ErrorType.CAN_NOT_CONVERT_DATE_TO_INTEGER;
+import static christmas.constants.ErrorType.CAN_NOT_CONVERT_QUANTITY_TO_INTEGER;
 import static christmas.validator.InputDateValidator.validateRange;
 import static christmas.validator.InputOrderValidator.validateExistMenuName;
 import static christmas.validator.InputOrderValidator.validateRangeQuantity;
@@ -29,16 +30,24 @@ public class StringParser {
 
     public static int parseDateInput(String input) {
         input = removeWhiteSpace(input);
-        int date = convertStringToInt(input);
+        int date = convertDateToInt(input);
         int validatedDate = validateRange(date);
         return validatedDate;
     }
 
-    private static int convertStringToInt(String input) {
+    private static int convertDateToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(CAN_NOT_CONVERT_INTEGER.getErrorMessage());
+            throw new IllegalArgumentException(CAN_NOT_CONVERT_DATE_TO_INTEGER.getErrorMessage());
+        }
+    }
+
+    private static int convertQuantityToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(CAN_NOT_CONVERT_QUANTITY_TO_INTEGER.getErrorMessage());
         }
     }
 
@@ -55,7 +64,7 @@ public class StringParser {
         return items.stream().map(item -> {
             String[] split = item.split(SPLIT_ORDER_DELIMITER);
             Menu menu = validateExistMenuName(split[MENU_NAME_INDEX]);
-            int quantity = convertStringToInt(split[QUANTITY_INDEX]);
+            int quantity = convertQuantityToInt(split[QUANTITY_INDEX]);
             validateRangeQuantity(quantity);
             return OrderItem.itemQuantityOf(menu, quantity);
         }).toList();

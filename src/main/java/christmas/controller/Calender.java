@@ -11,6 +11,7 @@ import christmas.service.FreeGiftService;
 import christmas.utils.PriceFormatter;
 
 public class Calender {
+    private static int DISCOUNT_MIN_PRICE = 10000;
     private int date;
     private boolean isDiscount = false;
     private OrderItemsResult orderItemsResult;
@@ -30,10 +31,12 @@ public class Calender {
 
     private void init() {
         printWelcome();
+        printRequestInputDate();
         judgeReEnterDateValue();
+        printRequestInputOrder();
         judgeReEnterOrderValue();
         printPreViewInform(date);
-        if (orderItemsResult.getTotalPrices() >= 10000) {
+        if (orderItemsResult.getTotalPrices() >= DISCOUNT_MIN_PRICE) {
             isDiscount = true;
         }
     }
@@ -63,7 +66,7 @@ public class Calender {
             try {
                 date = readDate();
                 break;
-            } catch (Exception ex) {
+            } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
             }
         }
@@ -74,7 +77,7 @@ public class Calender {
             try {
                 orderItemsResult = readOrder();
                 break;
-            } catch (Exception ex) {
+            } catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
             }
         }
@@ -110,7 +113,6 @@ public class Calender {
 
     private void getFreeGift(DiscountService discountService) {
         FreeGiftService freeGiftService = FreeGiftService.of(orderItemsResult.getTotalPrices());
-        FreeGiftService.addDiscountItem(discountItemsResult);
         freeGiftSentence = freeGiftService.execute().getOrderItemSentence();
         discountService.addFreeGiftToItemResult(discountItemsResult);
     }

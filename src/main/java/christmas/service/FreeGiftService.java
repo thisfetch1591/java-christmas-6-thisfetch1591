@@ -35,9 +35,11 @@ public class FreeGiftService {
         return OrderItem.itemQuantityOf(AVOID_GIFT_MENU, 1);
     }
 
-    public static void addDiscountItem(DiscountItemsResult discountItemsResult) {
-        DiscountItem discountItem = DiscountItem.discountTypeDiscountPriceOf(DiscountType.FREE_GIFT_EVENT,
-                FREE_GIFT_MENU.getCostOfMenu());
-        discountItemsResult.addDiscountItem(discountItem);
+    public static void addDiscountItem(int totalPrice, DiscountItemsResult discountItemsResult) {
+        if (totalPrice >= GIFT_MIN_PRICE) {
+            DiscountItem discountItem = DiscountItem.discountTypeDiscountPriceOf(DiscountType.FREE_GIFT_EVENT,
+                    FREE_GIFT_MENU.getCostOfMenu());
+            discountItemsResult.addDiscountItem(discountItem);
+        }
     }
 }
