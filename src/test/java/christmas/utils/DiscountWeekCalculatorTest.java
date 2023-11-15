@@ -2,6 +2,7 @@ package christmas.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.calculator.DiscountWeekCalculator;
 import christmas.constants.DiscountType;
 import christmas.constants.Menu;
 import christmas.domain.DiscountItem;

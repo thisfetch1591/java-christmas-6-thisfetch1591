@@ -1,6 +1,8 @@
 package christmas.domain;
 
 import christmas.constants.DiscountType;
+import christmas.utils.PriceFormatter;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class DiscountItem {
@@ -21,6 +23,7 @@ public class DiscountItem {
     }
 
     public String getDiscountItemSentence() {
+        PriceFormatter.formatPrice(discountPrice);
         return discountType.getDiscountContext() + ": -" + discountPrice + "원\n";
     }
 
