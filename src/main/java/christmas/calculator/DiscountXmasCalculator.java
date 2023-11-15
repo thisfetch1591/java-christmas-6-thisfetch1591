@@ -1,4 +1,4 @@
-package christmas.utils;
+package christmas.calculator;
 
 import christmas.constants.DiscountType;
 import christmas.domain.DiscountItem;

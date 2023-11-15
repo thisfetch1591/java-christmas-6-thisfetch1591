@@ -3,9 +3,9 @@ package christmas.service;
 import christmas.domain.DiscountItem;
 import christmas.domain.DiscountItemsResult;
 import christmas.domain.OrderItemsResult;
-import christmas.utils.DiscountSpecialCalculator;
-import christmas.utils.DiscountWeekCalculator;
-import christmas.utils.DiscountXmasCalculator;
+import christmas.calculator.DiscountSpecialCalculator;
+import christmas.calculator.DiscountWeekCalculator;
+import christmas.calculator.DiscountXmasCalculator;
 import java.util.ArrayList;
 import java.util.List;
 

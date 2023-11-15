@@ -1,8 +1,9 @@
-package christmas.utils;
+package christmas.calculator;
 
 import christmas.constants.DiscountType;
 import christmas.domain.DiscountItem;
 import christmas.domain.OrderItemsResult;
+import christmas.utils.WeekdayWeekendIdentifier;
 
 public class DiscountWeekCalculator {
     private final int date;

@@ -1,7 +1,8 @@
-package christmas.utils;
+package christmas.calculator;
 
 import christmas.constants.DiscountType;
 import christmas.domain.DiscountItem;
+import christmas.utils.SpecialDayIdentifier;
 
 public class DiscountSpecialCalculator {
 

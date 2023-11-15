@@ -29,6 +29,10 @@ public class OrderItem {
         return item.isMainMenu();
     }
 
+    public boolean isNotExistMenu() {
+        return item.isSameName("없음");
+    }
+
     public int addQuantity(int quantity) {
         return quantity + this.quantity;
     }
