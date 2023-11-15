@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum Menu {
+    NOT_EXIST_MENU("없음", 0, 0),
     MUSHROOM_CREAM_SOUP("양송이수프", 6000, 1),
     TAPAS("타파스", 5500, 1),
     CAESAR_SALAD("시저샐러드", 8000, 1),
@@ -35,21 +36,25 @@ public enum Menu {
                 .orElseThrow(() -> new NoSuchElementException(CAN_NOT_FOUND_MENU.getErrorMessage()));
     }
 
-    public int addPrice(int totalPrice) {
-        return totalPrice += costOfMenu;
+    public int getCostOfMenu() {
+        return costOfMenu;
+    }
+
+    public String getNameOfMenu() { return nameOfMenu;}
+
+    public boolean isMainMenu() {
+        return codeOfMenu == 2;
+    }
+
+    public boolean isDessert() {
+        return codeOfMenu == 3;
     }
 
     public boolean isDrink() {
-        if (codeOfMenu == 4) {
-            return true;
-        }
-        return false;
+        return codeOfMenu == 4;
     }
 
     public boolean isSameName(String menuName) {
-        if (menuName.equals(nameOfMenu)) {
-            return true;
-        }
-        return false;
+        return menuName.equals(nameOfMenu);
     }
 }

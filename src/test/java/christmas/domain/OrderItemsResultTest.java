@@ -1,6 +1,8 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.constants.Menu;
 import java.util.List;
@@ -35,7 +37,7 @@ class OrderItemsResultTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("음료만 입력 시 예외 처리")
+    @DisplayName("일정 수량 초과 입력시 예외처리")
     @Test
     void createExceptionForOrderedOverQuantity() {
         List<OrderItem> orderItems = List.of(
@@ -58,5 +60,22 @@ class OrderItemsResultTest {
         );
 
         OrderItemsResult orderItemsResult = OrderItemsResult.of(orderItems);
+        assertThat(orderItemsResult.getOrderMenuResultSentence()).contains(
+                "레드와인 5개\n시저샐러드 9개\n제로콜라 2개\n"
+        );
+    }
+
+    @DisplayName("정상적으로 할인 전 총주문 금액 수행")
+    @Test
+    void normalOperationGetTotalPrices() {
+        List<OrderItem> orderItems = List.of(
+                OrderItem.itemQuantityOf(Menu.RED_WINE, 5),
+                OrderItem.itemQuantityOf(Menu.CAESAR_SALAD, 9),
+                OrderItem.itemQuantityOf(Menu.ZERO_COKE, 2)
+        );
+
+        OrderItemsResult orderItemsResult = OrderItemsResult.of(orderItems);
+
+        assertEquals(378000, orderItemsResult.getTotalPrices());
     }
 }
