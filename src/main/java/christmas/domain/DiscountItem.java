@@ -23,8 +23,8 @@ public class DiscountItem {
     }
 
     public String getDiscountItemSentence() {
-        PriceFormatter.formatPrice(discountPrice);
-        return discountType.getDiscountContext() + ": -" + discountPrice + "원\n";
+        String formattedPrice = PriceFormatter.formatPrice(discountPrice);
+        return discountType.getDiscountContext() + ": -" + formattedPrice + "원\n";
     }
 
     @Override

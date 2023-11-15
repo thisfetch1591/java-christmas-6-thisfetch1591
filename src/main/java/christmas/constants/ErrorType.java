@@ -2,7 +2,7 @@ package christmas.constants;
 
 public enum ErrorType {
 
-    CAN_NOT_CONVERT_INTEGER("[ERROR] INTEGER로 변환할 수 없습니다."),
+    CAN_NOT_CONVERT_INTEGER("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해주세요"),
 
     DATE_RANGE_IS_NOT_VALIDATE("[ERROR] 1 ~ 31까지의 날짜만 입력할 수 있습니다"),
 
